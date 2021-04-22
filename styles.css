@@ -1,3 +1,19 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, ::before, ::after {
+    box-sizing: inherit;
+}
+
 body {
-    color: red;
+    font-size: 1.6rem;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+header.header-news > div {
+    text-decoration: underline;
+    color: gray;
 }
