@@ -1,5 +1,16 @@
 const header = document.querySelector('header.header-news');
 
+const container = document.querySelector('section.main-content');
+
+for (let i = 1; i <= 31; i ++) {
+    const day = document.createElement('div');
+    day.classList.add('main-content__day');
+    const dayContents = document.createElement('div');
+    day.innerText = '' + i;
+    // day.appendChild(dayContents);
+    container.appendChild(day);
+}
+
 const carouselItemCount = 4;
 
 fetch('http://localhost:3000/news.json')

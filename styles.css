@@ -24,3 +24,26 @@ header.header-news {
 header.header-news > div {
     flex: 1 0 0;
 }
+
+section.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-left: 1rem;
+}
+
+.main-content__day {
+    aspect-ratio: 1/1;
+    width: calc(100% / 7 - 1rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.main-content__day:hover {
+    background-color: rgba(0, 0, 0, .15);
+}
