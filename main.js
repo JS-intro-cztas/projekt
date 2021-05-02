@@ -1,16 +1,19 @@
-const header = document.querySelector('header.header-news');
+const header = document.querySelector('header.header-news > div.header-news__container');
 
-const carouselItemCount = 4;
+const carouselItemCount = 2;
+let carouselItemStart = 0;
+let articles;
 
 fetch('http://localhost:3000/news.json')
     .then(serverResponse => serverResponse.text())
     .then(responseText => {
         const data = JSON.parse(responseText);
-        populateNewsCarousel(data.articles);
+        articles = data.articles;
+        populateNewsCarousel(data.articles, carouselItemStart);
     });
 
-function populateNewsCarousel(news) {
-    for(let i = 0; i < carouselItemCount; i ++) {
+function populateNewsCarousel(news, startAt) {
+    for(let i = startAt; i < (startAt + carouselItemCount); i ++) {
         const newsValue = news[i];
         const newsDiv = createDivForNews(newsValue);
         header.appendChild(newsDiv);
@@ -19,6 +22,28 @@ function populateNewsCarousel(news) {
 
 function createDivForNews(newsContents) {
     const newsArticle = document.createElement('div');
-    newsArticle.innerText = newsContents.title;
+    newsArticle.classList.add('news-article');
+    newsArticle.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), transparent), url(${newsContents.image})`;
+
+    const title = document.createElement('span');
+    title.classList.add('news-article__title');
+    title.innerText = newsContents.title;
+
+    newsArticle.appendChild(title);
+
     return newsArticle;
 }
+
+const buttonLeft = document.querySelector('#carousel-button-left');
+
+const buttonRight = document.querySelector('#carousel-button-right');
+
+buttonLeft.addEventListener('click', () => {
+    carouselItemStart --;
+    populateNewsCarousel(articles, carouselItemStart);
+});
+
+buttonRight.addEventListener('click', () => {
+    carouselItemStart ++;
+    populateNewsCarousel(articles, carouselItemStart);
+});

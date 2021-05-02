@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
+    "css-generate": "dart-sass .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "dart-sass": "^1.25.0",
     "electron": "^12.0.2"
   }
 }
