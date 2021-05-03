@@ -13,11 +13,18 @@ fetch('http://localhost:3000/news.json')
     });
 
 function populateNewsCarousel(news, startAt) {
+    header.innerText = '';
     for(let i = startAt; i < (startAt + carouselItemCount); i ++) {
         const newsValue = news[i];
         const newsDiv = createDivForNews(newsValue);
         header.appendChild(newsDiv);
     }
+  checkButtonsVisibility();
+}
+
+function checkButtonsVisibility() {
+  buttonLeft.hidden = carouselItemStart === 0;
+  buttonRight.hidden = carouselItemStart >= (articles.length - carouselItemCount);
 }
 
 function createDivForNews(newsContents) {
