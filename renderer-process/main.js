@@ -1,3 +1,5 @@
+import { NewsArticle } from './components/news-article/news-article.js';
+
 const header = document.querySelector('header.header-news > div.header-news__container');
 
 const carouselItemCount = 2;
@@ -16,7 +18,8 @@ function populateNewsCarousel(news, startAt) {
     header.innerText = '';
     for(let i = startAt; i < (startAt + carouselItemCount); i ++) {
         const newsValue = news[i];
-        const newsDiv = createDivForNews(newsValue);
+        const newsArticle = new NewsArticle();
+        const newsDiv = newsArticle.createDivForNews(newsValue);
         header.appendChild(newsDiv);
     }
   checkButtonsVisibility();
@@ -25,20 +28,6 @@ function populateNewsCarousel(news, startAt) {
 function checkButtonsVisibility() {
   buttonLeft.hidden = carouselItemStart === 0;
   buttonRight.hidden = carouselItemStart >= (articles.length - carouselItemCount);
-}
-
-function createDivForNews(newsContents) {
-    const newsArticle = document.createElement('div');
-    newsArticle.classList.add('news-article');
-    newsArticle.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), transparent), url(${newsContents.image})`;
-
-    const title = document.createElement('span');
-    title.classList.add('news-article__title');
-    title.innerText = newsContents.title;
-
-    newsArticle.appendChild(title);
-
-    return newsArticle;
 }
 
 const buttonLeft = document.querySelector('#carousel-button-left');
@@ -54,3 +43,50 @@ buttonRight.addEventListener('click', () => {
     carouselItemStart ++;
     populateNewsCarousel(articles, carouselItemStart);
 });
+
+
+// ukazkovy kod:
+
+const text = 'ashdf';
+const cislo = 3;
+
+const automobil = {
+    pocetMistKSezeni: 5,
+    barvaKaroserie: 'cervena'
+};
+
+console.log(automobil.barvaKaroserie);
+
+class Operenec {
+
+    constructor(volani) {
+        this.zvuk = volani;
+    }
+
+    vydejZvuk() {
+        console.log(this.zvuk);
+    }
+
+}
+
+class Kacer extends Operenec {
+    plavPoJezirku() {
+        console.log('plavu plavu');
+    }
+}
+
+class Kohout extends Operenec {
+    hlasVychodSlunce() {
+        console.log('vychazi');
+    }
+}
+
+const kacer = new Kacer('kva kva');
+
+kacer.vydejZvuk();
+kacer.plavPoJezirku();
+
+const kohout = new Kohout('kikiriki');
+
+kohout.vydejZvuk();
+kohout.hlasVychodSlunce();
