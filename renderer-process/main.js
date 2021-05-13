@@ -48,7 +48,10 @@ buttonRight.addEventListener('click', () => {
 2. Vytvorit day.js a daj.scss v novej slozke
 3. Zaregistrovat novy element prostrednictvom customElements
 4. V konstruktoru novej triedy vloz do innerText akykolvek text (len aby sme videli ci sa nieco deje)
-5. Vyselektuje section.main-content
+5. Naimportuj novy kompnent to main.js
+5. Vyselektuje section.main-content element a uloz si ho do promenne
+6. Vytvor cyklus ktory zbehne aspon 28 krat a v tomto cyklu vytvor nove triedy
+7. Over ze sa ti vypisalo tvoje slovo vela krat
 */
 
 // ukazkovy kod:
@@ -77,7 +80,7 @@ class Operenec {
 
 class Kacer extends Operenec {
     constructor() {
-        super();
+        super('kva kva');
         console.log(this.zvuk);
     }
 
