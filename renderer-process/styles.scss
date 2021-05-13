@@ -1,4 +1,5 @@
 @import 'colors';
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 
 html {
     font-size: 62.5%;
@@ -50,4 +51,10 @@ header.header-news {
 
 header.header-news > div {
     flex: 1 0 0;
+}
+
+section.main-content {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
 }

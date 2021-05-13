@@ -1,4 +1,5 @@
 import { NewsArticle } from './components/news-article/news-article.js';
+import { Day } from './components/day/day.js';
 
 const header = document.querySelector('header.header-news > div.header-news__container');
 
@@ -43,16 +44,10 @@ buttonRight.addEventListener('click', () => {
     populateNewsCarousel(articles, carouselItemStart);
 });
 
-/*
-1. Vytvorit novu slozku v components 'day'
-2. Vytvorit day.js a daj.scss v novej slozke
-3. Zaregistrovat novy element prostrednictvom customElements
-4. V konstruktoru novej triedy vloz do innerText akykolvek text (len aby sme videli ci sa nieco deje)
-5. Naimportuj novy kompnent to main.js
-5. Vyselektuje section.main-content element a uloz si ho do promenne
-6. Vytvor cyklus ktory zbehne aspon 28 krat a v tomto cyklu vytvor nove triedy
-7. Over ze sa ti vypisalo tvoje slovo vela krat
-*/
+const mainContent = document.querySelector('section.main-content');
+for (let i = 1; i < 31; i++) {
+    mainContent.appendChild(new Day(i));
+}
 
 // ukazkovy kod:
 const text = 'ashdf';
