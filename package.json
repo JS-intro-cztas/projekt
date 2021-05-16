@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
+    "css-generate:watch": "dart-sass -I renderer-process/ --watch .",
     "css-generate": "dart-sass -I renderer-process/ .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

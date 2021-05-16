@@ -19,40 +19,6 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-header.header-news {
-    & > button {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        border: none;
-        border-radius: 0;
-        background-color: transparent;
-        color: rgba($black, .4);
-        cursor: pointer;
-        user-select: none;
-        transition: .5s;
-        &:focus {
-            outline: none;
-        }
-        &:hover {
-            color: $black;
-            background-color: rgba($white, .4);
-        }
-        &.last {
-            right: 0;
-        }
-    }
-    & > div.header-news__container {
-        display: flex;
-    }
-    position: relative;
-    min-height: 18rem;
-}
-
-header.header-news > div {
-    flex: 1 0 0;
-}
-
 section.main-content {
     display: grid;
     grid-template-columns: repeat(7, 1fr);

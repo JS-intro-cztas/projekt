@@ -1,4 +1,4 @@
-@import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -17,44 +17,12 @@ body {
   font-family: "Ubuntu", sans-serif;
 }
 
-header.header-news {
-  position: relative;
-  min-height: 18rem;
-}
-header.header-news > button {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  border: none;
-  border-radius: 0;
-  background-color: transparent;
-  color: rgba(35, 35, 35, 0.4);
-  cursor: pointer;
-  user-select: none;
-  transition: 0.5s;
-}
-header.header-news > button:focus {
-  outline: none;
-}
-header.header-news > button:hover {
-  color: #232323;
-  background-color: rgba(247, 247, 247, 0.4);
-}
-header.header-news > button.last {
-  right: 0;
-}
-header.header-news > div.header-news__container {
-  display: flex;
-}
-
-header.header-news > div {
-  flex: 1 0 0;
-}
-
 section.main-content {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 1rem;
 }
+
+/*# sourceMappingURL=styles.css.map */
 
 /*# sourceMappingURL=styles.css.map */
