@@ -10,9 +10,22 @@ fetch('http://localhost:3000/news.json')
     });
 
 const mainContent = document.querySelector('section.main-content');
-for (let i = 1; i < 31; i++) {
-    mainContent.appendChild(new Day(i));
+
+const currentDate = new Date();
+debugger;
+const maxDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+
+for (let i = 1; i <= maxDate; i++) {
+    const dayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+    mainContent.appendChild(new Day(dayDate));
 }
+
+const buttonOpenModal = document.getElementById('open-modal');
+const modalConatiner = document.querySelector('.modal-container');
+
+buttonOpenModal.addEventListener('click', () => {
+    modalConatiner.hidden = false;
+});
 
 // ukazkovy kod:
 const text = 'ashdf';

@@ -1,3 +1,18 @@
+app-day {
+  display: flex;
+  aspect-ratio: 1/1;
+  justify-content: center;
+  align-items: center;
+  color: #F7F7F7;
+  background-color: #82A383;
+  border-radius: 1rem;
+  font-size: 2.5rem;
+}
 
+app-day:hover {
+  box-shadow: 0 5px 10px rgba(35, 35, 35, 0.3);
+}
+
+/*# sourceMappingURL=day.css.map */
 
 /*# sourceMappingURL=day.css.map */
