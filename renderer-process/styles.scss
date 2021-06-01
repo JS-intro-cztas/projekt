@@ -32,8 +32,32 @@ section.modal-container {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: transparentize($black, 0.7);
+    background-color: $light-dark;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal-body {
+    min-width: 35rem;
+    background-color: $white;
+    border-radius: .5rem;
+    box-shadow: .5rem .5rem 1rem $light-dark;
+    padding: 1rem;
+}
+
+.modal-header {
+    display: flex;
+    & > *:first-child {
+        flex: 1 0 0;
+    }
+}
+
+.separator {
+    border-bottom: 1px solid $light-dark;
+    margin: 1rem 0;
+}
+
+.modal-actions {
+    padding-top: 1rem;
 }

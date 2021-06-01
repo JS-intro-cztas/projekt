@@ -1,0 +1,66 @@
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 1.6rem;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: "Ubuntu", sans-serif;
+}
+
+section.main-content {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+section.modal-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(35, 35, 35, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body {
+  min-width: 35rem;
+  background-color: #F7F7F7;
+  border-radius: 0.5rem;
+  box-shadow: 0.5rem 0.5rem 1rem rgba(35, 35, 35, 0.3);
+  padding: 1rem;
+}
+
+.modal-header {
+  display: flex;
+}
+
+.modal-header > *:first-child {
+  flex: 1 0 0;
+}
+
+.separator {
+  border-bottom: 1px solid rgba(35, 35, 35, 0.3);
+  margin: 1rem 0;
+}
+
+.modal-actions {
+  padding-top: 1rem;
+}
+
+/*# sourceMappingURL=styles.css.map */
+
+/*# sourceMappingURL=styles.css.map */

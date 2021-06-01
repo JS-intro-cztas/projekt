@@ -16,14 +16,27 @@
         <footer class="footer">
         </footer>
         <button id="open-modal">Open modal</button>
-        <template>
-
+        <template id="modal-template">
+            <section class="modal-container">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <span>Day Detail</span>
+                        <i id="close-modal" class="fas fa-times"></i>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="modal-contents">
+                        <form id="modal-form">
+                            <label for="isHoliday">Is Holiday</label>
+                            <input id="isHoliday" name="isHolidayControl" type="checkbox">
+                        </form>
+                    </div>
+                    <div class="modal-actions">
+                        <button id="save-button">Save</button>
+                        <button id="cancel-button">Cancel</button>
+                    </div>
+                </div>
+            </section>
         </template>
-        <!-- <section hidden class="modal-container">
-            <div class="modal-body">
-                XXXXXXXX
-            </div>
-        </section> -->
         <script type="module" src="./main.js"></script>
     </body>
 </html>
