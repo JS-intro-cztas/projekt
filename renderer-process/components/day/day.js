@@ -30,7 +30,7 @@ export class Day extends HTMLElement {
     }
 
     handleClickEvent() {
-        alert('Dnesni den: ' + this.getDayName()); 
+        window.showModal();
     }
 }
 

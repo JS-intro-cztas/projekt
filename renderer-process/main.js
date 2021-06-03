@@ -20,88 +20,62 @@ for (let i = 1; i <= maxDate; i++) {
     mainContent.appendChild(new Day(dayDate));
 }
 
-const openModalButton = document.querySelector('#open-modal');
-openModalButton.addEventListener('click', () => {
-    showDayModal().then((result) => console.log(result));
-});
-
 function showDayModal() {
-    const promiseResult = new Promise((resolve, reject) => {
-        const template = document.querySelector('#modal-template');
-        const modal = template.content.cloneNode(true);
+    const template = document.querySelector('#modal-template');
+    const modal = template.content.cloneNode(true);
 
-        const closeAction = () => {
-            const child = document.querySelector('section.modal-container');
-            document.body.removeChild(child);
-            resolve(null);
-        };
+    const closeAction = () => {
+        const child = document.querySelector('section.modal-container');
+        document.body.removeChild(child);
+    };
 
-        modal.querySelector('#close-modal').addEventListener('click', closeAction);
+    modal.querySelector('#close-modal').addEventListener('click', closeAction);
 
-        const cancelButton = modal.querySelector('#cancel-button');
-        if (cancelButton === null) {
-            reject('Must have cancel button');
-        }
-        cancelButton.addEventListener('click', closeAction);
+    const cancelButton = modal.querySelector('#cancel-button');
+    cancelButton.addEventListener('click', closeAction);
 
-        modal.querySelector('#save-button').addEventListener('click', () => {
-            const formRef = document.querySelector('#modal-form');
-            const formData = new FormData(formRef);
-            const isHoliday = formData.get('isHolidayControl') === 'on';
-            resolve('ahoj!!!!!');
-        });
-
-        document.body.appendChild(modal);
+    modal.querySelector('#save-button').addEventListener('click', () => {
+        const formRef = document.querySelector('#modal-form');
+        const formData = new FormData(formRef);
+        const isHoliday = formData.get('isHolidayControl') === 'on';
     });
 
-    return promiseResult;
+    document.body.appendChild(modal);
+
+    fetch('http://localhost:3000/contacts')
+        .then(serverResponse => serverResponse.text())
+        .then(responseText => {
+        const data = JSON.parse(responseText);
+        const select = document.querySelector('#eventAttendees');
+        data.forEach(it => {
+            const option = document.createElement('option');
+            option.setAttribute('value', it.id);
+            option.innerText = `${it.first_name} ${it.last_name}`;
+            select.appendChild(option);
+        });
+    });
 }
 
-// ukazkovy kod:
-// const text = 'ashdf';
-// const cislo = 3;
+window.showModal = showDayModal;
 
-// const automobil = {
-//     pocetMistKSezeni: 5,
-//     barvaKaroserie: 'cervena'
-// };
 
-// console.log(automobil.barvaKaroserie);
+fetch('http://localhost:3000/contacts')
+    .then(serverResponse => serverResponse.text())
+    .then(responseText => {
+      const data = JSON.parse(responseText);
+      // id
+      // first_name
+      // last_name
+      // gender
 
-// class Operenec {
+      // ziskat referenci na select s id eventAttendees
 
-//     constructor(volani) {
-//         this.zvuk = volani;
-//     }
+      // vytvorit novy element option 
+      // <option value="id"></option>
+      // option innerText first_name + last_name
+      // option.setAttribute('value', ...);
+      // option.innerText = firstname + lastnme;
 
-//     vydejZvuk() {
-//         console.log('delka zvuku', this.zvuk.length);
-//         console.log(this.zvuk);
-//     }
 
-// }
-
-// class Kacer extends Operenec {
-//     constructor() {
-//         super('kva kva');
-//         console.log(this.zvuk);
-//     }
-
-//     plavPoJezirku() {
-//         console.log('plavu plavu');
-//     }
-// }
-
-// class Kohout extends Operenec {
-//     hlasVychodSlunce() {
-//         console.log('vychazi');
-//     }
-// }
-
-// const kacer = new Kacer();
-
-// kacer.vydejZvuk();
-
-// const kohout = new Kohout('kikiriki');
-
-// kohout.vydejZvuk();
+      // vlozit option do selectu
+    })
