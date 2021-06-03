@@ -61,6 +61,31 @@ section.modal-container {
   padding-top: 1rem;
 }
 
+#modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#modal-form .row {
+  display: flex;
+  padding: 8px 0;
+  justify-content: space-between;
+  position: relative;
+}
+
+#modal-form .row::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(35, 35, 35, 0.3);
+}
+
+.hidden {
+  display: none !important;
+}
+
 /*# sourceMappingURL=styles.css.map */
 
 /*# sourceMappingURL=styles.css.map */

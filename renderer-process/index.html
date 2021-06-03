@@ -15,7 +15,6 @@
         </section>
         <footer class="footer">
         </footer>
-        <button id="open-modal">Open modal</button>
         <template id="modal-template">
             <section class="modal-container">
                 <div class="modal-body">
@@ -26,8 +25,34 @@
                     <div class="separator"></div>
                     <div class="modal-contents">
                         <form id="modal-form">
-                            <label for="isHoliday">Is Holiday</label>
-                            <input id="isHoliday" name="isHolidayControl" type="checkbox">
+                            <div class="row">
+                                <label for="isHoliday">Holiday</label>
+                                <input id="isHoliday" name="isHolidayControl" type="checkbox">
+                            </div>
+                            <div class="row">
+                                <label>Title</label>
+                                <input id="eventTitle" name="eventTitle" type="text">
+                            </div>
+                            <div class="row">
+                                <label>Description</label>
+                                <textarea id="eventDescription" name="eventDescription"></textarea>
+                            </div>
+                            <div class="row">
+                                <label>Limit Attendees by Gender</label>
+                                <input type="checkbox" name="limitAttendeesByGender" id="limitAttendeesByGender">
+                            </div>
+                            <div id="genderSelectRow" class="row hidden">
+                                <label>Male</label>
+                                <input type="radio" name="gender" value="Male">
+                                <label>Female</label>
+                                <input type="radio" name="gender" value="Female">
+                            </div>
+                            <div class="row">
+                                <label>Attendees</label>
+                                <select name="eventAttendees" id="eventAttendees">
+                                    <option value=' '> </option>
+                                </select>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-actions">
