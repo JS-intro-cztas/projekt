@@ -1,7 +1,41 @@
 import { Carousel } from './components/carousel/carousel.js';
 import { Day } from './components/day/day.js';
 
+window.showLoader = showLoader;
+window.hideLoader = hideLoader;
+
+function showLoader() {
+	document.body.appendChild(document.querySelector('#loaderTemplate').content.cloneNode(true));
+}
+
+function hideLoader() {
+    document.body.removeChild(document.querySelector('.loader'));
+}
+
+function showToaster(success, title, message) {
+    const toasterTemplate = document.querySelector('#toasterTemplate').content.cloneNode(true);
+    const toasterElement = toasterTemplate.querySelector('.toaster');
+    toasterElement.addEventListener('click', () => document.body.removeChild(toasterElement));
+    toasterElement.classList.add(success ? 'success' : 'error');
+    toasterTemplate.querySelector('h1').innerText = title;
+    toasterTemplate.querySelector('p').innerText = message;
+    document.body.appendChild(toasterTemplate);
+    setTimeout(() => {
+        try {
+            document.body.removeChild(toasterElement);
+        } catch(e) {
+            console.warn('Toaster already removed');
+        }
+    }, 3000);
+}
+
 const carousel = document.querySelector('app-carousel');
+
+fetch('http://localhost:3000/calendar')
+    .then(serverResponse => serverResponse.text())
+    .then(responseText => {
+      const data = JSON.parse(responseText);
+    });
 
 fetch('http://localhost:3000/news.json')
     .then(serverResponse => serverResponse.text())
@@ -37,7 +71,15 @@ function showDayModal() {
     modal.querySelector('#save-button').addEventListener('click', () => {
         const formRef = document.querySelector('#modal-form');
         const formData = new FormData(formRef);
-        const isHoliday = formData.get('isHolidayControl') === 'on';
+        const data = formData.entries();
+
+        const object = { };
+
+        for (let formValue of data) {
+            const key = formValue[0];
+            const value = formValue[1];
+            object[key] = value;
+        }
     });
 
     document.body.appendChild(modal);
@@ -52,13 +94,6 @@ function showDayModal() {
         }
     });
 
-    // pri vytvarani options pridat triedu
-    // ziskat referencie na vsetky elementy s nasou novou triedou
-    // querySelectorAll
-    // select.removeChild(it)
-    // document.removeChild(it)
-
-    debugger;
     const days = document.querySelectorAll('app-day');
 
     const daysArray = Array.from(days);
@@ -68,19 +103,50 @@ function showDayModal() {
     }
 
 
+    let contactsArray;
+
     fetch('http://localhost:3000/contacts')
         .then(serverResponse => serverResponse.text())
         .then(responseText => {
-        const data = JSON.parse(responseText);
+        contactsArray = JSON.parse(responseText);
+        createOptions(contactsArray);
+    });
+
+    const radioButtons = document.querySelectorAll('#genderSelectRow > input');
+
+    for (let radio of radioButtons) {
+        radio.addEventListener('change', () => {
+            const formRef = document.querySelector('#modal-form');
+            const formData = new FormData(formRef);
+            const gender = formData.get('gender');
+            const filteredContacts = contactsArray.filter((contact) => {
+                return contact.gender === gender;
+            });
+            createOptions(filteredContacts);
+        });
+    }
+}
+
+
+function createOptions(contactsArray) {
         const select = document.querySelector('#eventAttendees');
 
-        data.forEach(it => {
+        const helperClass = 'hakunamatata';
+
+        const oldOptions = document.querySelectorAll(`.${helperClass}`);
+
+        oldOptions.forEach(opt => {
+            select.removeChild(opt);
+            //opt.remove();
+        });
+
+        contactsArray.forEach(it => {
             const option = document.createElement('option');
             option.setAttribute('value', it.id);
             option.innerText = `${it.first_name} ${it.last_name}`;
+            option.classList.add(helperClass);
             select.appendChild(option);
         });
-    });
 }
 
 window.showModal = showDayModal;

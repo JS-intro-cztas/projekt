@@ -84,3 +84,56 @@ section.modal-container {
 .hidden {
     display: none !important;
 }
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparentize($black, .5);
+    font-size: 2.5rem; 
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anim-loader {
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: rotate;
+    animation-duration: 2s;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateZ(0);
+    }
+
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+.toaster {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 2rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    border-radius: .5rem;
+    box-shadow: 0 5px 10px transparentize($black, .5);
+    & > h1 {
+        font-size: 20px;
+    }
+    &.error {
+        background-color: rgb(151, 65, 65);
+        color: $white;
+    }
+    &.success {
+        background-color: $light-green;
+        color: $black
+    }
+}
