@@ -54,7 +54,7 @@ for (let i = 1; i <= maxDate; i++) {
     mainContent.appendChild(new Day(dayDate));
 }
 
-function showDayModal() {
+function showDayModal(dayDate) {
     const template = document.querySelector('#modal-template');
     const modal = template.content.cloneNode(true);
 
@@ -73,13 +73,59 @@ function showDayModal() {
         const formData = new FormData(formRef);
         const data = formData.entries();
 
-        const object = { };
+        const object = { 
+            date: dayDate
+        };
 
         for (let formValue of data) {
             const key = formValue[0];
             const value = formValue[1];
             object[key] = value;
         }
+
+        showLoader();
+
+        fetch('http://localhost:3000/calendar',
+            {
+                method: 'POST', // metoda POST sluzi k odosielaniu novych dat pre ulozenie na server
+                body: JSON.stringify(object), // obsah
+                headers: {
+                    'Content-Type': 'application/json', // informacia o formate dat aby server vedel precitat obsah
+                },
+            }
+        ).then(response => {
+                hideLoader(); // spracovanie odpovedi zo servru
+                // if (response.ok) {
+                if (response.status === 200) {
+                    showToaster(true, 'Data Ulozeny', 'Vase udalost byla ulozena.');
+                    fetch('http://localhost:3000/calendar')
+                    .then(serverResponse => serverResponse.text())
+                    .then(responseText => {
+                        const events = JSON.parse(responseText);
+                        const days = document.querySelectorAll('app-day');
+
+                        const eventValues = Object.values(events);
+
+                        eventValues.forEach(event => {
+                            for (let day of days) {
+                                const eventDate = new Date(event.date);
+                                const dayDate = day.date;
+
+                                // eventDate.toDateString()
+                                // v pripade ze sa rovna eventDate a dayDate -> nastavit event 
+                            }
+                        });
+                    });
+                } else {
+                    showToaster(false, 'Chyba Ukladani', 'Server neni dostupny.');
+                }
+            }
+        );
+
+        // GET
+        // POST
+        // PATCH
+        // DELETE
     });
 
     document.body.appendChild(modal);
@@ -94,13 +140,13 @@ function showDayModal() {
         }
     });
 
-    const days = document.querySelectorAll('app-day');
+    // const days = document.querySelectorAll('app-day');
 
-    const daysArray = Array.from(days);
+    // const daysArray = Array.from(days);
 
-    for (const item of days) {
-        console.log(item);
-    }
+    // for (const item of days) {
+    //     console.log(item);
+    // }
 
 
     let contactsArray;

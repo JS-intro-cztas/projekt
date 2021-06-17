@@ -1,4 +1,4 @@
-@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -47,7 +47,6 @@ section.modal-container {
 .modal-header {
   display: flex;
 }
-
 .modal-header > *:first-child {
   flex: 1 0 0;
 }
@@ -65,14 +64,12 @@ section.modal-container {
   display: flex;
   flex-direction: column;
 }
-
 #modal-form .row {
   display: flex;
   padding: 8px 0;
   justify-content: space-between;
   position: relative;
 }
-
 #modal-form .row::after {
   content: " ";
   position: absolute;
@@ -125,21 +122,16 @@ section.modal-container {
   border-radius: 0.5rem;
   box-shadow: 0 5px 10px rgba(35, 35, 35, 0.5);
 }
-
 .toaster > h1 {
   font-size: 20px;
 }
-
 .toaster.error {
   background-color: #974141;
   color: #F7F7F7;
 }
-
 .toaster.success {
   background-color: #82A383;
   color: #232323;
 }
-
-/*# sourceMappingURL=styles.css.map */
 
 /*# sourceMappingURL=styles.css.map */
