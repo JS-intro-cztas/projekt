@@ -1,4 +1,3 @@
-
 export class Clock extends HTMLElement {
     constructor() {
         super();
@@ -15,10 +14,6 @@ export class Clock extends HTMLElement {
         this.clockCode = "time";
 
         document.addEventListener('keydown', (event) => {
-            // TODO remove redundant code
-            // if (event.key == "t" && this.codeLetterVerificationIdx == 1) {
-            //     return;
-            // }
             if (event.key == this.clockCode[this.codeLetterVerificationIdx]) {
                 this.codeLetterVerificationIdx ++;
             } else {
@@ -34,18 +29,12 @@ export class Clock extends HTMLElement {
 
     showClock() {
         document.querySelector('#clock').classList.remove('hidden');
-        // TODO remove redundant
-        // for (var i = 0; i < 6; i++) {
-        //     setTimeout(function () {
-        //         document.querySelector('#clock').innerText = (new Date()).toLocaleTimeString();
-        //     }, i * 1000);            
-        // }
 
         setInterval(
             () => {
                 document.querySelector('#clock').innerText = (new Date()).toLocaleTimeString();
             },
-            1000,
+            500,
         );
 
         setTimeout(
