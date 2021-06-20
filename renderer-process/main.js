@@ -1,5 +1,6 @@
 import { Carousel } from './components/carousel/carousel.js';
 import { Day } from './components/day/day.js';
+import { Clock } from './components/clock/clock.js';
 
 window.showLoader = showLoader;
 window.hideLoader = hideLoader;
@@ -30,6 +31,7 @@ function showToaster(success, title, message) {
 }
 
 const carousel = document.querySelector('app-carousel');
+const clock = document.querySelector('app-clock');
 
 fetch('http://localhost:3000/calendar')
     .then(serverResponse => serverResponse.text())
@@ -43,6 +45,9 @@ fetch('http://localhost:3000/news.json')
       const data = JSON.parse(responseText);
       carousel.populateNewsCarousel(data.articles);
     });
+
+// TODO add keydown event listener
+
 
 const mainContent = document.querySelector('section.main-content');
 

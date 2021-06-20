@@ -1,0 +1,13 @@
+app-clock {
+  display: flex;
+  aspect-ratio: 12/1;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7F7F7;
+  color: #82A383;
+  font-size: 4rem;
+}
+app-clock:hover {
+  font-size: 4.5rem;
+}
+
